@@ -1,0 +1,221 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+.bg-gray {
+  background: #f1f3ff;
+}
+
+.bg-blue {
+  background: #0d28a6;
+}
+
+.p-home-l {
+  padding: 100px 32px 0 8vw;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+.layout-section {
+  padding-top: 104px;
+}
+/* our-service */
+.bi-check-lg-style {
+  background-color: #cfd4ed;
+  color: #0d28a6;
+  border-radius: 15px;
+  padding: 3px 5px;
+}
+
+/* why us */
+.card {
+  min-height: 230px;
+}
+.icon-whyus {
+  border-radius: 20px;
+  padding-left: 7px;
+  padding-right: 6px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 18px;
+}
+
+.bi-hand-thumbs-up-style,
+.bi-hand-thumbs-up-hover:hover {
+  background-color: #f9cc00;
+  color: white;
+}
+.bi-tag-style,
+.bi-tag-hover:hover {
+  background-color: #fa2c5a;
+  color: white;
+}
+.clock-hover:hover,
+.bi-clock-style {
+  background-color: #0d28a6;
+  color: white;
+}
+
+.bi-award-style,
+.bi-award-hover:hover {
+  background-color: #5cb85f;
+  color: white;
+}
+
+/* getting */
+.getting-p {
+  margin: 16px 250px;
+}
+
+/* testimoni */
+.start-rate {
+  font-size: 16px;
+  padding: 0 5px 0 0;
+  border: none;
+  background: none;
+  color: #f9cc00;
+}
+
+/* footer */
+.incon-footer {
+  border: none;
+  padding: 0;
+  margin-right: 20px;
+}
+.footer-incon-size {
+  width: 32px;
+  height: 32px;
+}
+
+.img-service-size {
+  width: 459px;
+  height: 428px;
+}
+/* nav */
+.register-style {
+  max-width: 81px;
+  max-height: 38px;
+}
+
+/* form cari mobil */
+.fm-cr {
+  position: relative;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px;
+  background: white;
+  padding: 24px;
+  margin-top: -50px;
+  z-index: 2;
+}
+/* daftar mobil */
+div.car-list {
+  padding: 24px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* car img */
+.card-insize {
+  min-height: 90px;
+}
+
+/* img in card */
+#imgCar {
+  width: 290px;
+  height: 250px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center;
+  object-position: center;
+  margin-left: 14px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+@media (max-width: 992px) {
+  /* offcanvas */
+
+  .offcanvas.offcanvas-end {
+    width: 40vw;
+  }
+  /* why us */
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .p-home-l {
+    padding: 80px 32px 20px 9vw;
+  }
+
+  .car-size {
+    width: 100%;
+    margin-top: 25%;
+    z-index: 0;
+  }
+
+  .img-service-size {
+    width: 459px;
+    height: 428px;
+    margin: auto;
+  }
+
+  /* getting */
+  .getting-p {
+    margin: 16px 100px;
+  }
+}
+
+@media (max-width: 576px) {
+  /* cotainer */
+  .p-home-l {
+    padding: 100px 16px 0 25px;
+  }
+
+  .car-size {
+    width: 344px;
+    height: 199px;
+    margin: 24px 0 auto auto;
+  }
+
+  /* our-service */
+  .img-service-size {
+    width: 199.26px;
+    height: 194.97px;
+    margin: 0 auto;
+  }
+
+  .text-service {
+    margin: 0 auto;
+  }
+  /* wy-us */
+  .text-wy-us {
+    margin: auto;
+    text-align: center;
+  }
+
+  /* testimonial */
+  .star-center {
+    margin: auto;
+    padding: auto;
+  }
+
+  /* getting */
+  .getting-p {
+    margin: 16px 50px;
+  }
+
+  /* faq */
+  .faq-text-center {
+    text-align: center;
+  }
+  .home-padding {
+    padding-top: 0px;
+  }
+  .p-home-l {
+    padding-top: 32px;
+  }
+}
