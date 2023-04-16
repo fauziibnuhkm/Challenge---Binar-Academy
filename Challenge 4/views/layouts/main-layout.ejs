@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title -->
+    <title><%= title %></title>
+
+    <!-- install offline bootstrap css -->
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css" />
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body>
+    <div>
+      <div class="bag-1 fixed-top"><%- include("side-bar-1") %></div>
+      <div class="bag-2 float-end">
+        <div class="nav-bar fixed-top z-2"><%- include("nav-bar") %></div>
+        <div class="row">
+          <div class="side-bar-2 fixed-top z-1"><%- include("side-bar-2") %></div>
+          <div class="body-main-layout"><%- body %></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- install offline bootstrap JS -->
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </body>
+</html>

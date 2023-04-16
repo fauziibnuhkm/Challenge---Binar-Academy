@@ -1,0 +1,42 @@
+<div class="d-flex mt-5" style="font-size: 12px">
+  <p class="fw-bold">Cars</p>
+  <img class="ms-1" src="/img/chevron-right.png" alt="right arrow" style="width: 16px; height: 16px" />
+  <p>List Car</p>
+</div>
+<div class="d-flex mt-3">
+  <H2 class="me-auto fw-bold" style="font-size: 20px">List Car</H2>
+  <a href="/cars/add-new-car" class="rounded-1 align-items-center text-light text-decoration-none" style="font-size: 14px; padding: 8px 12px; background-color: #0d28a6">
+    <img src="/img/fi_plus.png" alt="plus icon" style="width: 12px; height: 12px" /> Add New Car
+  </a>
+</div>
+<div class="d-flex mt-3">
+  <a href="/cars" class="text-decoration-none fw-bold rounded-1" style="font-size: 14px; color: #0d28a6; padding: 8px 12px; border: 1px solid; border-color: #0d28a6; background-color: #cfd4ed">All</a>
+  <a href="/cars?size=small" class="text-decoration-none ms-2 rounded-1" style="font-size: 14px; color: #aeb7e1; padding: 8px 12px; border: 1px solid; border-color: #aeb7e1; background-color: #ffffff">Small</a>
+  <a href="/cars?size=medium" class="text-decoration-none ms-2 rounded-1" style="font-size: 14px; color: #aeb7e1; padding: 8px 12px; border: 1px solid; border-color: #aeb7e1; background-color: #ffffff">Medium</a>
+  <a href="/cars?size=large" class="text-decoration-none ms-2 rounded-1" style="font-size: 14px; color: #aeb7e1; padding: 8px 12px; border: 1px solid; border-color: #aeb7e1; background-color: #ffffff">Large</a>
+</div>
+<div class="mt-4 d-flex justify-content-evenly flex-wrap">
+  <% cars.map((car) => { %>
+  <div class="card mb-3" style="width: 351px; overflow: hidden">
+    <img src="<%= car.photo %> " alt="..." />
+    <div class="card-body">
+      <p style="font-size: 14px"><%= car.name %></p>
+      <h5 style="font-size: 16px">Rp <%= car.price %> / hari</h5>
+      <div class="d-flex mt-3">
+        <img src="/img/fi_clock.png" alt="clock icon" style="width: 20px; height: 20px" />
+        <p class="ms-2" style="font-size: 14px">Updated at 4 Apr 2022, 09.00</p>
+      </div>
+      <div class="d-flex">
+        <form class="me-auto" action="/cars/delete/<%= car.id %>" method="post">
+          <button style="background-color: #ffffff; padding: 8px 45px; color: #fa2c5a; font-size: 14px; border: 1px solid #fa2c5a; border-radius: 2px">
+            <img src="/img/fi_trash-2.png" alt="trash icon" style="width: 18px; height: 18px; margin-right: 5px" />Delete
+          </button>
+        </form>
+        <a href="/cars/update-car-information/<%= car.id %>" class="text-decoration-none" style="background-color: #5cb85f; padding: 8px 45px; color: #ffffff; font-size: 14px; border: 1px solid; border-radius: 2px">
+          <img src="/img/fi_edit.png" alt="" style="width: 18px; height: 18px; margin-right: 5px" />Edit
+        </a>
+      </div>
+    </div>
+  </div>
+  <% }) %>
+</div>
