@@ -1,0 +1,1180 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Challenge Chapter 5",
+        "description": "API description in Markdown.",
+        "version": "1.0.0"
+    },
+    "tags": [
+        {
+            "name": "Shops",
+            "description": "This is API for managing CRUD SHOPS"
+        },
+        {
+            "name": "Users",
+            "description": "This is API for managing CRUD USERS"
+        },
+        {
+            "name": "Products",
+            "description": "This is API for managing CRUD PRODUCTS"
+        }
+    ],
+    "servers": [
+        {
+            "url": "http://localhost:3000/api/v1/"
+        }
+    ],
+    "paths": {
+        "/shops": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Return a list of shops",
+                "description": "This is API for get all shop data",
+                "responses": {
+                    "200": {
+                        "description": "Success get all shops data"
+                    }
+                }
+            }
+        },
+        "/shops/create": {
+            "post": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Create new shop",
+                "description": "This is API for create new shop, only user role can create new shop.",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success create new shop",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "toko imam"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "bandung"
+                                    },
+                                    "userId": {
+                                        "type": "integer",
+                                        "example": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new Shop",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "toko imam"
+                                                },
+                                                "city": {
+                                                    "type": "string",
+                                                    "example": "bandung"
+                                                },
+                                                "userId": {
+                                                    "type": "integer",
+                                                    "example": 1
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because name shop is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because shop name empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shops/search": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Search shops",
+                "description": "This is API for search shops.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Input name of the shops to get",
+                        "schema": {
+                            "type": "string",
+                            "example": "Toko Danar"
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success search shop",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Toko Danar"
+                                                },
+                                                "city": {
+                                                    "type": "string",
+                                                    "example": "Jakarta"
+                                                },
+                                                "userId": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because shops is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because shops is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/shops/{id}": {
+            "get": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Get shop by ID",
+                "description": "This is API for get shop data by id",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the shops to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get shops data by id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Toko Danar"
+                                                },
+                                                "city": {
+                                                    "type": "string",
+                                                    "example": "Jakarta"
+                                                },
+                                                "userId": {
+                                                    "type": "integer",
+                                                    "example": 2
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Update shops by ID.",
+                "description": "This is API for update shop by id, only admin role can edit shop",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the shop to update",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success edit shop",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Toko Danar"
+                                    },
+                                    "city": {
+                                        "type": "string",
+                                        "example": "Jakarta"
+                                    },
+                                    "userId": {
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update shop by id"
+                    },
+                    "400": {
+                        "description": "Failed because name shop is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because shop name empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Shops"
+                ],
+                "summary": "Delete shops by ID.",
+                "description": "This API for delete shops by id, only superadmin role can delete shop",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "input ID of the shops to delete",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete this id"
+                    },
+                    "404": {
+                        "description": "This id is not found"
+                    }
+                }
+            }
+        },
+        "/users": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Returns a list of users.",
+                "description": "This is API for get all user data",
+                "responses": {
+                    "200": {
+                        "description": "Success get all user data"
+                    }
+                }
+            }
+        },
+        "/users/register": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Create / Register user",
+                "description": "This is API for create new user.",
+                "requestBody": {
+                    "description": "Success create user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "Danaruser"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Danarganteng"
+                                    },
+                                    "role": {
+                                        "type": "string",
+                                        "example": "user"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new User",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Danaruser"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "Danarganteng"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "user"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because username is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because username is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Failed because username is already exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because username is already exist"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/login": {
+            "post": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Login user",
+                "description": "This is API for login user.",
+                "requestBody": {
+                    "description": "Login user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "Danaruser"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Danarganteng"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new User",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Danaruser"
+                                                },
+                                                "password": {
+                                                    "type": "string",
+                                                    "example": "Danarganteng"
+                                                },
+                                                "role": {
+                                                    "type": "string",
+                                                    "example": "user"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because username is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because username is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/users/{id}": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Get user by ID.",
+                "description": "This is API for get user data by id, only admin role can get user data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the user to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get user data by id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Danaruser"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "Danarganteng"
+                                        },
+                                        "role": {
+                                            "type": "string",
+                                            "example": "user"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Update user by ID.",
+                "description": "This is API for update user by id, only user role can edit user by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the user to update",
+                        "schema": {
+                            "type": "integer",
+                            "example": 8
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success edit user",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "username": {
+                                        "type": "string",
+                                        "example": "asd-edit"
+                                    },
+                                    "password": {
+                                        "type": "string",
+                                        "example": "Danarganteng"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update user by id"
+                    },
+                    "400": {
+                        "description": "Failed because username is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because username is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "Delete user by ID.",
+                "description": "This is API for delete users by id, only superadmin role can delete user",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the user to delete",
+                        "schema": {
+                            "type": "integer",
+                            "example": 7
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete this id"
+                    },
+                    "404": {
+                        "description": "This id is not found"
+                    }
+                }
+            }
+        },
+        "/products": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Returns a list of products.",
+                "description": "This is API for get all products data",
+                "responses": {
+                    "200": {
+                        "description": "Success get products data"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ]
+            }
+        },
+        "/products/{id}": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Get product by ID.",
+                "description": "This is API for get product data by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the products to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success get products data by id",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "Avanza"
+                                        },
+                                        "price": {
+                                            "type": "integer",
+                                            "example": "500000"
+                                        },
+                                        "stock": {
+                                            "type": "integer",
+                                            "example": "2"
+                                        },
+                                        "shopId": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Update product by ID.",
+                "description": "This is API for update product by id",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the products to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 1
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success edit product",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Terios"
+                                    },
+                                    "price": {
+                                        "type": "string",
+                                        "example": "integer"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "20"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success update product by id"
+                    },
+                    "400": {
+                        "description": "Failed because name product is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because name product is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Delete products by ID.",
+                "description": "This is API for delete products by id, only superadmin role can delete products",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Input ID of the products to get",
+                        "schema": {
+                            "type": "integer",
+                            "example": 2
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success delete this id"
+                    },
+                    "404": {
+                        "description": "This id is not found"
+                    }
+                }
+            }
+        },
+        "/products/create": {
+            "post": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Create products",
+                "description": "This is API for create new products.",
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "requestBody": {
+                    "description": "Success create products",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "Avanza"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": "500000"
+                                    },
+                                    "stock": {
+                                        "type": "integer",
+                                        "example": "2"
+                                    },
+                                    "shopId": {
+                                        "type": "integer",
+                                        "example": "3"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success create new Products",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Avanza"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "500000"
+                                                },
+                                                "stock": {
+                                                    "type": "integer",
+                                                    "example": "2"
+                                                },
+                                                "shopId": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because products is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because products is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/products/search": {
+            "get": {
+                "tags": [
+                    "Products"
+                ],
+                "summary": "Search products",
+                "description": "This is API for search products.",
+                "parameters": [
+                    {
+                        "name": "name",
+                        "in": "path",
+                        "description": "Input Name of the products to get",
+                        "schema": {
+                            "type": "string",
+                            "example": "Avanza"
+                        },
+                        "required": true
+                    }
+                ],
+                "security": [
+                    {
+                        "bearerToken": []
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success search product",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Success"
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "properties": {
+                                                "name": {
+                                                    "type": "string",
+                                                    "example": "Avanza"
+                                                },
+                                                "price": {
+                                                    "type": "integer",
+                                                    "example": "10000000"
+                                                },
+                                                "stock": {
+                                                    "type": "integer",
+                                                    "example": "10"
+                                                },
+                                                "shopId": {
+                                                    "type": "integer",
+                                                    "example": "1"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Failed because products is empty",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "example": "failed"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Failed because products is empty"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "shops": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "toko imam"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "bandung"
+                    },
+                    "userId": {
+                        "type": "integer",
+                        "example": 1
+                    }
+                }
+            },
+            "users": {
+                "type": "object",
+                "properties": {
+                    "username": {
+                        "type": "string",
+                        "example": "Danar"
+                    },
+                    "password": {
+                        "type": "string",
+                        "example": "Danarganteng"
+                    },
+                    "role": {
+                        "type": "string",
+                        "example": "user"
+                    }
+                }
+            },
+            "products": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Avanza"
+                    },
+                    "price": {
+                        "type": "integer",
+                        "example": "500000"
+                    },
+                    "stock": {
+                        "type": "integer",
+                        "example": "2"
+                    },
+                    "shopId": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "bearerToken": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    }
+}
